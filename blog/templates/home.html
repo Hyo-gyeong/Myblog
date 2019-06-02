@@ -1,0 +1,68 @@
+ {% extends 'base.html' %}
+ {% block content %}
+ <head>
+   <style>
+    .card-title {
+      font-size:30px;
+      font-weight:bolder;
+    }
+    .card-date {
+      color:cadetblue;
+    }
+    .card-text {
+      font-size:22px;
+    }
+    .mb-4:hover {
+        transform: scale(1.05);
+    }
+    @-webkit-keyframes moving {
+      0% {transform: translateY(0);}
+      25% {transform: translateY(+4px);}
+      50% {transform: translateY(0);}
+      75% {transform: translateY(+6px);}
+      100% {transform: translateY(0);}
+    }
+    .card-edit:hover {
+      animation-name: moving;
+      animation-duration: 0.8s;
+      animation-iteration-count: infinite;
+      display: inline-block;
+    }
+    @keyframes shrinking-cog {
+    0% { transform: scale(1) }
+    50% { transform: scale(1.3) }
+    100% { transform: scale(1) }
+    }
+    .heart:hover {
+      animation-name:shrinking-cog; 
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      display: inline-block;
+    }
+    
+   </style>
+ </head>
+  {% for blog in blogs.all %}
+<div class="container">
+<div class="card mb-4" style="width:700px; height:236px; border-color:rgb(247, 142, 212);box-shadow:3px 3px 3px 3px rgb(221, 160, 181);"">
+    <div class="row no-gutters">
+    <div class="col-md-4">
+      {% if blog.image %}
+    <a href="{% url 'detail' blog.id %}"><img class="card-img" src="{{blog.image_thumbnail.url}}" alt="..."></a>
+    {% endif %}
+    </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Title : {{blog.title}}</h5>
+          
+          <p class="card-date">Date : {{blog.pub_date}}</p>
+          <p class="card-text">Contents : {{blog.sum}}<a href="{% url 'detail' blog.id %}">...<span class="heart">💙</span></a></p>
+          <a class="card-text" href="{% url 'edit' blog.id %}"><span class="card-edit">🐥</span></a>
+          <a class="card-text" href="{% url 'delete' blog.id %}"><span class="card-edit">🚽</span></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

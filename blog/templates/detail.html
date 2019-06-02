@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container"  >
+        
+<div class="card mb-3" >
+        <p ><img src="{{post.image.url}}"  class="card-img-top" height=100% width=60%></p>
+        <div class="card-body">
+            <p><font class="ff">Title :</font> {{post.title}}</p>
+            <p><font class="ff">Date :</font> {{post.pub_date}}</p>
+            
+            <p><font class="ff">Contents :</font> {{post.body}}</p>
+            <a href="{% url 'home' %}">back</a>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

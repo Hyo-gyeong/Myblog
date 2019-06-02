@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" action="{% url 'edit' blog.id %}">
+    {% csrf_token%}
+    <font class="ff">Title:</font> <input type="text" class="form-control" name="title" value="{{blog.title}}"><br>
+    <font class="ff">Body:</font><br>
+    <textarea class="form-control" rows="5" name="body">{{blog.body}}</textarea><br>
+    <input class="btn btn-dark" type="submit" value="💋">
+</form>
+{% endblock %}
